@@ -1,6 +1,6 @@
 <?php
     include('includes/visits.php');
-
+    include('includes/form.php');
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,6 +12,8 @@
     <title>Flights reservations</title>
 </head>
 <body>
+    <table>
 
+    </table>
 </body>
 </html>
