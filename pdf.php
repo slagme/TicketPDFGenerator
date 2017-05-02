@@ -1,6 +1,6 @@
 <?php
 include ('includes/airports.php');
-
+require_once ('vendor/autoload.php');
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
            if (($_POST['departureAirport'] != $_POST['destinationAirport'] )){
@@ -13,10 +13,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         $price = $_POST['price'];
 
                         foreach ($airports as $key => $value) {
-                            if ($value['code'] == $departureAirport){
+                            if ($value['name'] == $departureAirport){
                                 $depTimezone = $value['timezone'];
                             }
-                            if ($value['code'] == $destinationAirport) {
+                            if ($value['name'] == $destinationAirport){
                                 $arrTimezone = $value['timezone'];
                             }
                         }
@@ -43,4 +43,35 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     exit;
            }
 }
+?>
+<?php
 
+$faker=Faker\Factory::create();
+
+
+
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flights reservations</title>
+</head>
+<body>
+    <table border="1px">
+        <?php
+            echo "<th>". "Passenger : " .$faker->name ."</th>";
+            echo "<tr><td>". $departureAirport.  " Your departure time is: ". $newDepartureDateTime."</td></tr>";
+            echo "<tr><td>". $destinationAirport ." Your arrival time is: ". $newArrivalTime  ."</td></tr>";
+            echo "<tr><td>". "Your flight lasts: ".$flightLength." hours". "</td></tr>";
+            echo "<tr><td>". "Price of your flight: ". $price ." $"."</td></tr>";
+
+        ?>
+
+</table>
+</body>
+</html>
