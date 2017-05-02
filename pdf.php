@@ -48,7 +48,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 $faker=Faker\Factory::create();
 
+use NumberToWords\NumberToWords;
 
+$numberToWords = new NumberToWords();
+$currencyTransformer=$numberToWords->getCurrencyTransformer('en');
+$priceToWords=$currencyTransformer->toWords($price*100, 'USD');
 
 ?>
 
@@ -69,7 +73,7 @@ $faker=Faker\Factory::create();
             echo "<tr><td>". $destinationAirport ." Your arrival time is: ". $newArrivalTime  ."</td></tr>";
             echo "<tr><td>". "Your flight lasts: ".$flightLength." hours". "</td></tr>";
             echo "<tr><td>". "Price of your flight: ". $price ." $"."</td></tr>";
-
+            echo "<tr><td>". "Price in words: ". $priceToWords ."</td></tr>";
         ?>
 
 </table>
