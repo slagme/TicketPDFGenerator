@@ -1,4 +1,6 @@
+
 <?php
+
 include ('includes/airports.php');
 require_once ('vendor/autoload.php');
 
@@ -13,10 +15,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         $price = $_POST['price'];
 
                         foreach ($airports as $key => $value) {
-                            if ($value['name'] == $departureAirport){
+                            if ($value['code'] == $departureAirport){
                                 $depTimezone = $value['timezone'];
                             }
-                            if ($value['name'] == $destinationAirport){
+                            if ($value['code'] == $destinationAirport){
                                 $arrTimezone = $value['timezone'];
                             }
                         }
@@ -43,8 +45,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     exit;
            }
 }
-?>
-<?php
 
 $faker=Faker\Factory::create();
 
@@ -55,8 +55,7 @@ $currencyTransformer=$numberToWords->getCurrencyTransformer('en');
 $priceToWords=$currencyTransformer->toWords($price*100, 'USD');
 
 ?>
-
-<!doctype html>
+$html = '
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +74,12 @@ $priceToWords=$currencyTransformer->toWords($price*100, 'USD');
             echo "<tr><td>". "Price of your flight: ". $price ." $"."</td></tr>";
             echo "<tr><td>". "Price in words: ". $priceToWords ."</td></tr>";
         ?>
-
 </table>
 </body>
 </html>
+';
+<?php
+$mpdf = new mPDF();
+
+$mpdf->writeHtml($html);
+$mpdf->Output();
