@@ -6,14 +6,14 @@
     <label for="">Choose your departure airport:</label>
         <select class="form-control " name="departureAirport">
             <?php foreach ($airports as $key => $value) {
-                echo "<option value='". $airports[$key]['name'] . "'>" . $value['name'] . "</option>";
+                echo "<option value='". $airports[$key]['code'] . "'>" . $value['name'] . "</option>";
                 }
             ?>
         </select><br><br>
     <label for=""> Choose your destination airport:</label>
         <select class="form-control " name="destinationAirport">
             <?php foreach ($airports as $key => $value) {
-                echo "<option value='". $airports[$key]['name'] . "'>" . $value['name'] . "</option>";
+                echo "<option value='". $airports[$key]['code'] . "'>" . $value['name'] . "</option>";
                 }
         ?>
         </select><br><br>

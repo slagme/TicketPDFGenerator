@@ -53,8 +53,6 @@ use NumberToWords\NumberToWords;
 $numberToWords = new NumberToWords();
 $currencyTransformer=$numberToWords->getCurrencyTransformer('en');
 $priceToWords=$currencyTransformer->toWords($price*100, 'USD');
-
-?>
 $html = '
 <html lang="en">
 <head>
@@ -65,20 +63,20 @@ $html = '
     <title>Flights reservations</title>
 </head>
 <body>
-    <table border="1px">
-        <?php
-            echo "<th>". "Passenger : " .$faker->name ."</th>";
-            echo "<tr><td>". $departureAirport.  " Your departure time is: ". $newDepartureDateTime."</td></tr>";
-            echo "<tr><td>". $destinationAirport ." Your arrival time is: ". $newArrivalTime  ."</td></tr>";
-            echo "<tr><td>". "Your flight lasts: ".$flightLength." hours". "</td></tr>";
-            echo "<tr><td>". "Price of your flight: ". $price ." $"."</td></tr>";
-            echo "<tr><td>". "Price in words: ". $priceToWords ."</td></tr>";
-        ?>
+    <table border="1px" align="center">
+        <th>Passenger : ' .$faker->name .'</th>
+            <tr><td>'. $departureAirport.  ' Your departure time is: '. $newDepartureDateTime.'</td></tr>
+            <tr><td>'. $destinationAirport .' Your arrival time is: '. $newArrivalTime  .'</td></tr>
+            <tr><td>Your flight lasts: '.$flightLength.' hours</td></tr>
+            <tr><td>Price of your flight: '. $price .' $</td></tr>
+            <tr><td>Price in words: '. $priceToWords .'</td></tr>
+       
 </table>
 </body>
 </html>
 ';
-<?php
+
+//<?php
 $mpdf = new mPDF();
 
 $mpdf->writeHtml($html);
